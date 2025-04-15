@@ -1,35 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route } from 'react-router-dom';
+import Dashboard from './manager/pages/Dashboard';
+import Login from './manager/pages/Login';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Routes>
+      <Route path="/manager" element={<Dashboard />} />
+      <Route path="/manager/login" element={<Login />} />
+      <Route path="/" element={
+        <div className="text-center p-10">
+          <h1 className="text-3xl font-bold text-blue-600">메인 페이지</h1>
+          <p className="mt-4 text-gray-600">지금은 매니저 페이지 준비 중입니다.</p>
+          <a href="/manager/login" className="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+            매니저 화면으로 이동
+          </a>
+        </div>
+      } />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
