@@ -1,6 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuthStore } from '@/shared/stores/auth';
 
 const Sidebar = () => {
+
+  const clearToken = useAuthStore((state) => state.clearToken);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    clearToken();
+    navigate('/manager/login');
+  };
+
   return (
     <aside className="w-64 h-screen bg-white shadow-md fixed left-0 top-0 p-6 space-y-6">
       <h1 className="text-xl font-bold mb-8">💼 매니저</h1>
@@ -29,6 +39,13 @@ const Sidebar = () => {
             <li><Link to="/manager/menus" className="block text-gray-700 hover:text-blue-500">- 시술 메뉴</Link></li>
           </ul>
         </div>
+         {/* 로그아웃 */}
+        <button
+          onClick={handleLogout}
+          className="mt-6 text-sm text-red-500 hover:text-red-600"
+        >
+        로그아웃
+      </button>
       </nav>
     </aside>
   );

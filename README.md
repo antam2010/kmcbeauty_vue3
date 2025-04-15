@@ -52,3 +52,6 @@ export default tseslint.config({
   },
 })
 ```
+
+
+bun run build --mode stage

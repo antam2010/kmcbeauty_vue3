@@ -1,12 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
-import Dashboard from './manager/pages/Dashboard';
-import Login from './manager/pages/Login';
+import ManagerRoutes from '@/manager/routes';
 
 function App() {
   return (
     <Routes>
-      <Route path="/manager" element={<Dashboard />} />
-      <Route path="/manager/login" element={<Login />} />
+      <Route path="/manager/*" element={<ManagerRoutes />} />
       <Route path="/" element={
         <div className="text-center p-10">
           <h1 className="text-3xl font-bold text-blue-600">메인 페이지</h1>

@@ -1,12 +1,34 @@
 import { Routes, Route } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import CustomerList from './pages/customers/CustomerList';
+import RequireAuth from '@/shared/components/RequireAuth';
+import ManagerLayout from './layout/ManagerLayout';
 
 const ManagerRoutes = () => {
   return (
     <Routes>
-      <Route path="/manager" element={<Dashboard />} />
-      <Route path="/manager/login" element={<Login />} />
+      <Route path="login" element={<Login />} />
+      <Route
+        path=""
+        element={
+          <RequireAuth>
+            <ManagerLayout>
+              <Dashboard />
+            </ManagerLayout>
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="customers"
+        element={
+          <RequireAuth>
+            <ManagerLayout>
+              <CustomerList />
+            </ManagerLayout>
+          </RequireAuth>
+        }
+      />
     </Routes>
   );
 };
