@@ -1,9 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
-import CustomerList from './pages/customers/CustomerList';
 import RequireAuth from '@/shared/components/RequireAuth';
 import ManagerLayout from './layout/ManagerLayout';
+
+import CustomerList from './pages/customers/CustomerList';
+import TreatmentMenuList from './pages/treatment_menu/TreatmentMenuList';
 
 const ManagerRoutes = () => {
   return (
@@ -25,6 +27,16 @@ const ManagerRoutes = () => {
           <RequireAuth>
             <ManagerLayout>
               <CustomerList />
+            </ManagerLayout>
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="treatment-menus"
+        element={
+          <RequireAuth>
+            <ManagerLayout>
+              <TreatmentMenuList />
             </ManagerLayout>
           </RequireAuth>
         }

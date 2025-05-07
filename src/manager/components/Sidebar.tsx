@@ -48,7 +48,7 @@ const Sidebar = () => {
         <div>
           <div className="text-gray-500 font-semibold mb-1">🛠️ 관리</div>
           <ul className="pl-4 space-y-1">
-            <li><Link to="/manager/menus" className="block text-gray-700 hover:text-blue-500">- 시술 메뉴</Link></li>
+            <li><Link to="/manager/treatment-menus" className="block text-gray-700 hover:text-blue-500">- 시술 메뉴</Link></li>
           </ul>
         </div>
         {/* 로그아웃 */}
