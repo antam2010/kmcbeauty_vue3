@@ -22,7 +22,7 @@ export interface PhonebookListResponse {
 export async function getPhonebookList(params: {
   page?: number;
   size?: number;
-  group_name?: string | null;
+  search?: string | null;
 }): Promise<PhonebookListResponse> {
   const { data } = await axiosInstance.get('/phonebooks', { params });
   return data;

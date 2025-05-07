@@ -5,18 +5,18 @@ const CustomerList = () => {
   const [customers, setCustomers] = useState<Phonebook[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [groupName, setGroupName] = useState('');
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     (async () => {
-      const data = await getPhonebookList({ page, size: 2, group_name: groupName || undefined });
+      const data = await getPhonebookList({ page, size: 2, search: search || undefined });
       setCustomers(data.items);
       setTotalPages(data.pages);
     })();
-  }, [page, groupName]);
+  }, [page, search]);
 
   const handleGroupNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setGroupName(e.target.value);
+    setSearch(e.target.value);
     setPage(1); // 검색 시 페이지 초기화
   };
 
@@ -26,15 +26,15 @@ const CustomerList = () => {
 
       <div className="mb-4 flex items-center space-x-2">
         <label htmlFor="groupName" className="text-sm font-medium">
-          그룹 이름 검색:
+          검색:
         </label>
         <input
           type="text"
           id="groupName"
-          value={groupName}
+          value={search}
           onChange={handleGroupNameChange}
           className="border px-2 py-1 rounded text-sm"
-          placeholder="예: VIP, 일반 등"
+          placeholder="이름, 전화번호, 그룹, 메모 등"
         />
       </div>
 
