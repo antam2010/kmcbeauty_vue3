@@ -1,0 +1,17 @@
+{
+    "recommendations": [
+      "dsznajder.es7-react-js-snippets",        // React/Redux 스니펫
+      "esbenp.prettier-vscode",                 // 코드 포매터
+      "dbaeumer.vscode-eslint",                 // ESLint (리눅스 & macOS 환경)
+      "formulahendry.auto-close-tag",           // 태그 자동 닫기
+      "formulahendry.auto-rename-tag",          // 태그 자동 이름 변경
+      "xabikos.javascriptsnippets",             // JS/React 스니펫
+      "naumovs.color-highlight",                // CSS 색상 코드 강조
+      "pkief.material-icon-theme",              // 아이콘 테마
+      "eamodio.gitlens",                        // Git 정보 보기
+      "wix.vscode-import-cost",                 // 파일 import 용량 표시
+      "yoavbls.pretty-ts-errors",               // TS 오류 가독성 향상 (TypeScript만 쓰는 경우)
+      "styled-components.vscode-styled-components" // styled-components 하이라이팅
+    ]
+  }
+  
