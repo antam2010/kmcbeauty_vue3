@@ -5,18 +5,39 @@ const CustomerList = () => {
   const [customers, setCustomers] = useState<Phonebook[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [groupName, setGroupName] = useState('');
 
   useEffect(() => {
     (async () => {
-      const data = await getPhonebookList({ page, size: 50 });
+      const data = await getPhonebookList({ page, size: 2, group_name: groupName || undefined });
       setCustomers(data.items);
       setTotalPages(data.pages);
     })();
-  }, [page]);
+  }, [page, groupName]);
+
+  const handleGroupNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setGroupName(e.target.value);
+    setPage(1); // 검색 시 페이지 초기화
+  };
 
   return (
     <div className="p-8">
       <h2 className="text-xl font-bold mb-4">고객 리스트</h2>
+
+      <div className="mb-4 flex items-center space-x-2">
+        <label htmlFor="groupName" className="text-sm font-medium">
+          그룹 이름 검색:
+        </label>
+        <input
+          type="text"
+          id="groupName"
+          value={groupName}
+          onChange={handleGroupNameChange}
+          className="border px-2 py-1 rounded text-sm"
+          placeholder="예: VIP, 일반 등"
+        />
+      </div>
+
       <table className="w-full border text-sm">
         <thead className="bg-gray-100 text-left">
           <tr>

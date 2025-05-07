@@ -19,6 +19,12 @@ export const logout = async (): Promise<void> => {
 
 // 액세스 토큰 재발급
 export const refreshToken = async (): Promise<Auth> => {
-  const res = await axios.post<Auth>(`'/auth/refresh'`);
+  const res = await axios.post<Auth>(`${import.meta.env.VITE_API_BASE_URL}/auth/refresh`, null, {
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
   return res.data;
 };
