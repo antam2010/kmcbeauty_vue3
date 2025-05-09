@@ -1,23 +1,5 @@
 import { axiosInstance } from '@/shared/api/axios';
-
-export interface Phonebook {
-  id: number;
-  user_id: number;
-  group_name: string | null;
-  name: string;
-  phone_number: string;
-  memo: string | null;
-  created_at: string;
-  updated_at: string;
-}
-
-export interface PhonebookListResponse {
-  items: Phonebook[];
-  total: number;
-  page: number;
-  size: number;
-  pages: number;
-}
+import type { PhonebookListResponse } from "@/shared/types/phonebook"; // access_token, token_type 인터페이스
 
 export async function getPhonebookList(params: {
   page?: number;

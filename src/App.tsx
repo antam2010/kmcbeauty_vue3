@@ -1,8 +1,10 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import ManagerRoutes from '@/manager/routes';
 import Login from './manager/pages/Login';
+
 import PrivacyPolicy from './manager/pages/PrivacyPolicy';
 import TermsOfService from './manager/pages/TermsOfService';
+import ShopSelectPage from './manager/pages/shop/selected';
 
 function App() {
   return (
@@ -45,6 +47,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route path="/terms-of-service" element={<TermsOfService />} />
+      <Route path="/manager/shops/selected" element={<ShopSelectPage />} />
     </Routes>
   );
 }
