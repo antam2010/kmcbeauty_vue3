@@ -1,15 +1,23 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import type { AxiosError } from 'axios';
-
-import { logout } from '@/api/manager/auth';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { getSelectedShop } from '@/api/manager/shop';
+import { logout } from '@/api/manager/auth';
 import { useAuthStore } from '@/shared/stores/auth';
-
+import type { AxiosError } from 'axios';
 import type { Shop } from '@/shared/types/shop';
+
+import {
+  Home,
+  CalendarDays,
+  ShoppingCart,
+  Users,
+  Settings,
+  LogOut,
+} from 'lucide-react';
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const clearToken = useAuthStore((state) => state.clearToken);
   const [selectedShop, setSelectedShop] = useState<Shop | null>(null);
 
@@ -27,6 +35,7 @@ const Sidebar = () => {
         }
       }
     };
+
     fetchSelectedShop();
   }, []);
 
@@ -41,66 +50,67 @@ const Sidebar = () => {
     }
   };
 
+  const MenuItem = ({
+    to,
+    icon: Icon,
+    label,
+  }: {
+    to: string;
+    icon: React.ElementType;
+    label: string;
+  }) => {
+    const active = location.pathname === to;
+    return (
+      <Link
+        to={to}
+        className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+          active
+            ? 'bg-blue-100 text-blue-700'
+            : 'text-gray-700 hover:bg-gray-100 hover:text-blue-600'
+        }`}
+      >
+        <Icon className="w-4 h-4" />
+        {label}
+      </Link>
+    );
+  };
+
   return (
-    <aside className="w-64 h-screen bg-white shadow-md fixed left-0 top-0 p-6 flex flex-col justify-between">
+    <aside className="w-64 h-screen bg-white border-r shadow-sm flex flex-col justify-between p-4">
       <div>
-        {/* 선택된 상점 */}
-        <div className="mb-6 bg-gray-50 p-4 rounded-lg">
-          <label className="block text-xs text-gray-500 mb-1">선택된 상점</label>
-          <div className="text-sm font-semibold text-gray-900">
-            {selectedShop?.name || '상점 정보 없음'}
+        {/* 상점 정보 */}
+        <div className="bg-gray-50 p-3 rounded-lg mb-6 border border-gray-200 flex items-center justify-between">
+          <div>
+            <div className="text-xs text-gray-500 font-medium">선택된 상점</div>
+            <div className="text-sm font-semibold text-gray-800">
+              {selectedShop?.name || '없음'}
+            </div>
           </div>
           <button
             onClick={() => navigate('/manager/shops/selected')}
-            className="mt-2 text-xs text-blue-500 hover:underline"
+            className="text-[11px] text-blue-500 hover:underline"
           >
-            상점 바꾸기
+            변경
           </button>
         </div>
 
-        {/* 타이틀 */}
-        <h1 className="text-xl font-bold mb-4 text-gray-900">매니저</h1>
-
-        {/* 메뉴 */}
-        <nav className="space-y-6">
-          <div>
-            <div className="text-gray-400 text-xs font-semibold mb-1">예약</div>
-            <Link to="/manager/reservations" className="block px-2 py-1 rounded hover:bg-gray-100 text-gray-800 text-sm">
-              예약 관리
-            </Link>
-          </div>
-
-          <div>
-            <div className="text-gray-400 text-xs font-semibold mb-1">매출</div>
-            <ul className="space-y-1 pl-2">
-              <li><Link to="/manager/sales/new" className="block hover:text-blue-500 text-sm text-gray-700">- 매출 등록</Link></li>
-              <li><Link to="/manager/sales/list" className="block hover:text-blue-500 text-sm text-gray-700">- 매출 리스트</Link></li>
-              <li><Link to="/manager/sales/by-customer" className="block hover:text-blue-500 text-sm text-gray-700">- 고객별 매출</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <div className="text-gray-400 text-xs font-semibold mb-1">고객</div>
-            <ul className="space-y-1 pl-2">
-              <li><Link to="/manager/customers" className="block hover:text-blue-500 text-sm text-gray-700">- 고객 리스트</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <div className="text-gray-400 text-xs font-semibold mb-1">관리</div>
-            <ul className="space-y-1 pl-2">
-              <li><Link to="/manager/treatment-menus" className="block hover:text-blue-500 text-sm text-gray-700">- 시술 메뉴</Link></li>
-            </ul>
-          </div>
+        <nav className="space-y-4">
+          <MenuItem to="/manager" icon={Home} label="홈" />
+          <MenuItem to="/manager/reservations" icon={CalendarDays} label="예약 관리" />
+          <MenuItem to="/manager/sales/new" icon={ShoppingCart} label="매출 등록" />
+          <MenuItem to="/manager/sales/list" icon={ShoppingCart} label="매출 리스트" />
+          <MenuItem to="/manager/sales/by-customer" icon={Users} label="고객별 매출" />
+          <MenuItem to="/manager/customers" icon={Users} label="고객 리스트" />
+          <MenuItem to="/manager/treatment-menus" icon={Settings} label="시술 메뉴" />
         </nav>
       </div>
 
-      {/* 로그아웃 */}
-      <div className="mt-8">
+      <div className="pt-6 border-t mt-6">
         <button
           onClick={handleLogout}
-          className="text-sm text-red-500 hover:text-red-600"
+          className="flex items-center gap-2 text-sm text-red-500 hover:text-red-600"
         >
+          <LogOut className="w-4 h-4" />
           로그아웃
         </button>
       </div>
