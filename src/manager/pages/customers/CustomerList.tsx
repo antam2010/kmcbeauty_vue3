@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { getPhonebookList, Phonebook } from '@/api/manager/phonebook';
+import { getPhonebookList } from '@/api/manager/phonebook';
+import type { Phonebook } from "@/shared/types/phonebook";
 
 const CustomerList = () => {
   const [customers, setCustomers] = useState<Phonebook[]>([]);

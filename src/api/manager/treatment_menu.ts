@@ -1,6 +1,6 @@
 import { axiosInstance } from '@/shared/api/axios';
 
-import type { TreatmentMenuListResponse } from "@/shared/types/streatment_menu"; // access_token, token_type 인터페이스
+import type { TreatmentMenuListResponse } from "@/shared/types/streatment_menu";
 
 export async function getTreatmentMenuList(params: {
   page?: number;

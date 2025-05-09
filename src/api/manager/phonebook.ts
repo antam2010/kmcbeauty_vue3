@@ -1,5 +1,5 @@
 import { axiosInstance } from '@/shared/api/axios';
-import type { PhonebookListResponse } from "@/shared/types/phonebook"; // access_token, token_type 인터페이스
+import type { PhonebookListResponse } from "@/shared/types/phonebook";
 
 export async function getPhonebookList(params: {
   page?: number;

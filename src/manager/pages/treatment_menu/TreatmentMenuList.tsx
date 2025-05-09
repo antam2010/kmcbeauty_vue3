@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getTreatmentMenuList, TreatmentMenu } from '@/api/manager/treatment_menu';
+import { getTreatmentMenuList } from '@/api/manager/treatment_menu';
+import type { TreatmentMenu, TreatmentMenuDetail } from "@/shared/types/streatment_menu";
 
 const TreatmentMenuList = () => {
   const [menus, setMenus] = useState<TreatmentMenu[]>([]);
@@ -60,7 +61,7 @@ const TreatmentMenuList = () => {
                 </tr>
               </thead>
               <tbody>
-                {menu.details.map((detail) => (
+                {menu.details.map((detail:TreatmentMenuDetail) => (
                   <tr key={detail.id ?? `${menu.id}-new`} className="hover:bg-gray-50">
                     <td className="p-2 border">{detail.name || '-'}</td>
                     <td className="p-2 border">{detail.duration_min ?? '-'}</td>
