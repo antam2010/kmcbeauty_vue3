@@ -66,7 +66,7 @@ const TreatmentMenuList = () => {
                     <td className="p-2 border">{detail.duration_min ?? '-'}</td>
                     <td className="p-2 border">{detail.base_price?.toLocaleString() ?? '-'}</td>
                     <td className="p-2 border">
-                      {detail.created_at ? new Date(detail.created_at).toLocaleDateString() : '-'}
+                      {detail.created_at ? new Date(detail.created_at).toLocaleString() : '-'}
                     </td>
                   </tr>
                 ))}
