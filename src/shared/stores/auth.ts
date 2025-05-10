@@ -1,4 +1,3 @@
-// src/shared/stores/auth.ts
 import { create } from 'zustand';
 
 interface AuthState {

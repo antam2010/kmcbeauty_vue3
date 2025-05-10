@@ -9,7 +9,7 @@ import type { Shop } from '@/shared/types/shop';
 import {
   Home,
   CalendarDays,
-  ShoppingCart,
+  // ShoppingCart,
   Users,
   Settings,
   LogOut,
@@ -96,10 +96,10 @@ const Sidebar = () => {
 
         <nav className="space-y-4">
           <MenuItem to="/manager" icon={Home} label="홈" />
-          <MenuItem to="/manager/reservations" icon={CalendarDays} label="예약 관리" />
-          <MenuItem to="/manager/sales/new" icon={ShoppingCart} label="매출 등록" />
-          <MenuItem to="/manager/sales/list" icon={ShoppingCart} label="매출 리스트" />
-          <MenuItem to="/manager/sales/by-customer" icon={Users} label="고객별 매출" />
+          <MenuItem to="/manager/treatments" icon={CalendarDays} label="예약 관리" />
+          {/* <MenuItem to="/manager/sales/new" icon={ShoppingCart} label="매출 등록" /> */}
+          {/* <MenuItem to="/manager/sales/list" icon={ShoppingCart} label="매출 리스트" /> */}
+          {/* <MenuItem to="/manager/sales/by-customer" icon={Users} label="고객별 매출" /> */}
           <MenuItem to="/manager/customers" icon={Users} label="고객 리스트" />
           <MenuItem to="/manager/treatment-menus" icon={Settings} label="시술 메뉴" />
         </nav>
