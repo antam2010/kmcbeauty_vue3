@@ -8,9 +8,9 @@ export interface Treatment {
   id: number;
   phonebook_id: number;
   reserved_at: string;
-  memo: string;
+  memo: string | null;
   status: TreatmentStatus;
-  finished_at: string;
+  finished_at: string | null;
   treatment_items: TreatmentMenuDetail[];
   phonebook: Phonebook;
 }

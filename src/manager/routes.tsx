@@ -6,6 +6,7 @@ import ManagerLayout from './layout/ManagerLayout';
 
 import CustomerList from './pages/customers/CustomerList';
 import TreatmentMenuList from './pages/treatment_menu/TreatmentMenuList';
+import TreatmentCalendarPage from './pages/treatment/treatmentList';
 
 const ManagerRoutes = () => {
   return (
@@ -37,6 +38,16 @@ const ManagerRoutes = () => {
           <RequireAuth>
             <ManagerLayout>
               <TreatmentMenuList />
+            </ManagerLayout>
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="treatments"
+        element={
+          <RequireAuth>
+            <ManagerLayout>
+              <TreatmentCalendarPage />
             </ManagerLayout>
           </RequireAuth>
         }

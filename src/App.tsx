@@ -5,7 +5,6 @@ import Login from './manager/pages/Login';
 import PrivacyPolicy from './manager/pages/PrivacyPolicy'; 
 import TermsOfService from './manager/pages/TermsOfService';
 import ShopSelectPage from './manager/pages/shop/selected';
-import TreatmentCalendarPage from './manager/pages/treatment/treatmentList';
 
 function App() {
   return (
@@ -49,7 +48,6 @@ function App() {
       <Route path="/privacy-policy" element={<PrivacyPolicy />} /> {/* 개인정보 처리 방침 페이지 */}
       <Route path="/terms-of-service" element={<TermsOfService />} /> {/* 이용 약관 페이지 */}
       <Route path="/manager/shops/selected" element={<ShopSelectPage />} /> {/* 상점 선택 페이지 */}
-      <Route path="/manager/treatments" element={<TreatmentCalendarPage />} /> {/* 시술 예약 캘린더 페이지 */}
 
       {/* 404 페이지 */}
     </Routes>

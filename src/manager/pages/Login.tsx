@@ -20,6 +20,7 @@ const Login = () => {
       setToken(res.access_token);
       navigate('/manager');
     } catch (err) {
+      console.error(err);
       setError('로그인에 실패했습니다.');
     }
   };
