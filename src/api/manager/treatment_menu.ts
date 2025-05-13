@@ -7,6 +7,6 @@ export async function getTreatmentMenuList(params: {
   size?: number;
   search?: string | null;
 }): Promise<TreatmentMenuListResponse> {
-  const { data } = await axiosInstance.get('/treatment-menus', { params });
+  const { data } = await axiosInstance.get('/treatment-menus/', { params });
   return data;
 }

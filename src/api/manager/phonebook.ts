@@ -6,6 +6,6 @@ export async function getPhonebookList(params: {
   size?: number;
   search?: string | null;
 }): Promise<PhonebookListResponse> {
-  const { data } = await axiosInstance.get('/phonebooks', { params });
+  const { data } = await axiosInstance.get('/phonebooks/', { params });
   return data;
 }
