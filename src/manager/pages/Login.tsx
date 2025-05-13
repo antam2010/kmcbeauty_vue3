@@ -4,8 +4,8 @@ import { loginRequest } from '../../shared/api/auth';
 import { useAuthStore } from '../../shared/stores/auth';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState<string>('antam2010@naver.com');
+  const [password, setPassword] = useState<string>('1111');
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
   const setToken = useAuthStore((state) => state.setToken);
