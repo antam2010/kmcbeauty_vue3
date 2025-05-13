@@ -12,7 +12,7 @@ export async function createTreatment(payload: {
   finished_at: string | null;
   treatment_items: TreatmentMenuDetail[];
 }): Promise<Treatment> {
-  const response = await axiosInstance.post<Treatment>("/treatments/", payload);
+  const response = await axiosInstance.post<Treatment>("/treatments", payload);
   return response.data;
 }
 
@@ -32,6 +32,6 @@ export async function getTreatmentList(params: {
   size: number;
   pages: number;
 }> {
-  const response = await axiosInstance.get("/treatments/", { params });
+  const response = await axiosInstance.get("/treatments", { params });
   return response.data;
 }

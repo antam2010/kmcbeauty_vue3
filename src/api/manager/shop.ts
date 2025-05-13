@@ -3,7 +3,7 @@ import type { Shop, ShopListResponse } from "@/shared/types/shop";
 
 export async function getShopList(): Promise<ShopListResponse> {
   const params = { page: 1, size: 100 };
-  const { data } = await axiosInstance.get<ShopListResponse>("/shops/", {
+  const { data } = await axiosInstance.get<ShopListResponse>("/shops", {
     params,
   });
   return data;
