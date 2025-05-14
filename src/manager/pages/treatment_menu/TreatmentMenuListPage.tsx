@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getTreatmentMenuList } from '@/manager/api/treatment_menu';
-import type { TreatmentMenu, TreatmentMenuDetail } from "@/manager/types/treatment_menu";
+import { getTreatmentMenuList } from '@/shared/api/treatment_menu';
+import type { TreatmentMenu, TreatmentMenuDetail } from "@/shared/types/treatment_menu";
 
 const TreatmentMenuList = () => {
   const [menus, setMenus] = useState<TreatmentMenu[]>([]);

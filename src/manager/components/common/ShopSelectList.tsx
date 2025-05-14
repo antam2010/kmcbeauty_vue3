@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import type { Shop } from '@/manager/types/shop';
-import { getShopList, setSelectShop } from '@/manager/api/shop';
+import type { Shop } from '@/shared/types/shop';
+import { getShopList, setSelectShop } from '@/shared/api/shop';
 import { useNavigate } from 'react-router-dom';
 
 const ShopSelectList = () => {

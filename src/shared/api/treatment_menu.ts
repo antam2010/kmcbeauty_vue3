@@ -1,6 +1,6 @@
 import { axiosInstance } from '@/shared/api/axios';
 
-import type { TreatmentMenuListResponse } from "@/manager/types/treatment_menu";
+import type { TreatmentMenuListResponse } from "@/shared/types/treatment_menu";
 
 export async function getTreatmentMenuList(params: {
   page?: number;

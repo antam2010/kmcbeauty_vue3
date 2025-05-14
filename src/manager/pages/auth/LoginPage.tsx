@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '@/manager/api/auth';
+import { login } from '@/shared/api/auth';
 import { useAuthStore } from '../../../shared/stores/auth';
 
 const Login = () => {

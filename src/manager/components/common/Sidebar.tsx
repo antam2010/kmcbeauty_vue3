@@ -1,10 +1,10 @@
   import { useState, useEffect } from 'react';
   import { Link, useNavigate, useLocation } from 'react-router-dom';
-  import { getSelectedShop } from '@/manager/api/shop';
-  import { logout } from '@/manager/api/auth';
+  import { getSelectedShop } from '@/shared/api/shop';
+  import { logout } from '@/shared/api/auth';
   import { useAuthStore } from '@/shared/stores/auth';
   import type { AxiosError } from 'axios';
-  import type { Shop } from '@/manager/types/shop';
+  import type { Shop } from '@/shared/types/shop';
 
   import {
     Home,

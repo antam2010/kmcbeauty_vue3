@@ -1,6 +1,6 @@
 import { axiosInstance } from '@/shared/api/axios';
 import axios from 'axios';
-import type { Auth } from '@/manager/types/auth'; // access_token, token_type 인터페이스
+import type { Auth } from '@/shared/types/auth'; // access_token, token_type 인터페이스
 
 // 로그인
 export const login = async (username: string, password: string): Promise<Auth> => {

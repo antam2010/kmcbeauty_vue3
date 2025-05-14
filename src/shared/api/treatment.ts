@@ -1,7 +1,7 @@
 import { axiosInstance } from "@/shared/api/axios";
 
-import type { Treatment, TreatmentStatus } from "@/manager/types/treatment";
-import type { TreatmentMenuDetail } from "@/manager/types/treatment_menu";
+import type { Treatment, TreatmentStatus } from "@/shared/types/treatment";
+import type { TreatmentMenuDetail } from "@/shared/types/treatment_menu";
 
 export async function createTreatment(payload: {
   id: number;

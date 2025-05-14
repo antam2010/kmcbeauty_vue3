@@ -11,8 +11,8 @@ import {
   SortingState,
   VisibilityState,
 } from '@tanstack/react-table'
-import { getPhonebookList } from '@/manager/api/phonebook'
-import type { Phonebook } from '@/manager/types/phonebook'
+import { getPhonebookList } from '@/shared/api/phonebook'
+import type { Phonebook } from '@/shared/types/phonebook'
 import { Download, Eye, Pencil, Trash2 } from 'lucide-react'
 import { saveAs } from 'file-saver'
 import { useCallback } from 'react'

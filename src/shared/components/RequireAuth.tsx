@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAuthStore } from '@/shared/stores/auth';
-import { refreshToken } from '@/manager/api/auth';
+import { refreshToken } from '@/shared/api/auth';
 import { useNavigate } from 'react-router-dom';
 
 const RequireAuth = ({ children }: { children: React.ReactNode }) => {
