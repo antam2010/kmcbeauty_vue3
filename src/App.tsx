@@ -1,9 +1,9 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import ManagerRoutes from '@/manager/routes';
-import Login from './manager/pages/Login';
+import Login from './manager/pages/auth/LoginPage';
 
-import PrivacyPolicy from './manager/pages/PrivacyPolicy'; 
-import TermsOfService from './manager/pages/TermsOfService';
+import PrivacyPolicy from './manager/pages/policy/PrivacyPolicyPage'; 
+import TermsOfService from './manager/pages/policy/TermsOfServicePage';
 import ShopSelectPage from './manager/pages/shop/selected';
 
 function App() {

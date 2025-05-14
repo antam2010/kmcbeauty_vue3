@@ -3,7 +3,7 @@ import axios, {
   InternalAxiosRequestConfig,
 } from "axios";
 import { useAuthStore } from "@/shared/stores/auth";
-import { refreshToken } from "@/api/manager/auth";
+import { refreshToken } from "@/manager/api/auth";
 
 // 백엔드 에러 응답 타입 정의
 type ErrorResponse = {

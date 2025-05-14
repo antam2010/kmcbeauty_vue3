@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { Shop } from "@/shared/types/shop";
+import type { Shop } from "@/manager/types/shop";
 
 interface ShopState {
   shops: Shop[];

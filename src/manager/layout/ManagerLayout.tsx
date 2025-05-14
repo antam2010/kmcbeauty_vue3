@@ -1,4 +1,5 @@
-import Sidebar from '../components/Sidebar';
+import React from 'react';
+import Sidebar from '../components/common/Sidebar';
 
 const ManagerLayout = ({ children }: { children: React.ReactNode }) => {
   return (

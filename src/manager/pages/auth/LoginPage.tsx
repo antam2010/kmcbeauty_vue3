@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loginRequest } from '../../shared/api/auth';
-import { useAuthStore } from '../../shared/stores/auth';
+import { login } from '@/manager/api/auth';
+import { useAuthStore } from '../../../shared/stores/auth';
 
 const Login = () => {
   const [email, setEmail] = useState<string>('antam2010@naver.com');
@@ -13,10 +13,10 @@ const Login = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await loginRequest({
-        username: email,
+      const res = await login(
+        email,
         password,
-      });
+      );
       setToken(res.access_token);
       navigate('/manager');
     } catch (err) {

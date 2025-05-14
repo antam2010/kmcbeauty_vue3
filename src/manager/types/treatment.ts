@@ -1,6 +1,6 @@
 
-import type { Phonebook } from '@/shared/types/phonebook';
-import type { TreatmentMenuDetail } from '@/shared/types/treatment_menu';
+import type { Phonebook } from '@/manager/types/phonebook';
+import type { TreatmentMenuDetail } from '@/manager/types/treatment_menu';
 
 export type TreatmentStatus = "RESERVED" | "CANCELLED" | "FINISHED"; // 필요시 확장
 

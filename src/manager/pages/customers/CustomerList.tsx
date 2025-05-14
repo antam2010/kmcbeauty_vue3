@@ -11,12 +11,12 @@ import {
   SortingState,
   VisibilityState,
 } from '@tanstack/react-table'
-import { getPhonebookList } from '@/api/manager/phonebook'
-import type { Phonebook } from '@/shared/types/phonebook'
+import { getPhonebookList } from '@/manager/api/phonebook'
+import type { Phonebook } from '@/manager/types/phonebook'
 import { Download, Eye, Pencil, Trash2 } from 'lucide-react'
 import { saveAs } from 'file-saver'
 import { useCallback } from 'react'
-import useDebounce from '@/hooks/useDebounce'
+import useDebounce from '@/shared/hooks/useDebounce'
 
 export default function CustomerList() {
   const [data, setData] = useState<Phonebook[]>([])

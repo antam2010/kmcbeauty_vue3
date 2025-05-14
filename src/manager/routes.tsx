@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
+import Login from './pages/auth/LoginPage';
+import Dashboard from './pages/dashboard/DashboardPage';
 import RequireAuth from '@/shared/components/RequireAuth';
 import ManagerLayout from './layout/ManagerLayout';
 
 import CustomerList from './pages/customers/CustomerList';
-import TreatmentMenuList from './pages/treatment_menu/TreatmentMenuList';
-import TreatmentCalendarPage from './pages/treatment/treatmentList';
+import TreatmentMenuList from './pages/treatment_menu/TreatmentMenuListPage';
+import TreatmentCalendarPage from './pages/treatment/treatmentListPage';
 
 const ManagerRoutes = () => {
   return (

@@ -1,5 +1,5 @@
 import { axiosInstance } from '@/shared/api/axios';
-import type { Shop, ShopListResponse } from "@/shared/types/shop";
+import type { Shop, ShopListResponse } from "@/manager/types/shop";
 
 export async function getShopList(): Promise<ShopListResponse> {
   const params = { page: 1, size: 100 };

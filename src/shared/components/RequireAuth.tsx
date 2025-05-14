@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAuthStore } from '@/shared/stores/auth';
-import { refreshAccessToken } from '@/shared/api/auth';
+import { refreshToken } from '@/manager/api/auth';
 import { useNavigate } from 'react-router-dom';
 
 const RequireAuth = ({ children }: { children: React.ReactNode }) => {
@@ -12,10 +12,10 @@ const RequireAuth = ({ children }: { children: React.ReactNode }) => {
     const checkAuth = async () => {
       try {
         if (!token) {
-          const newToken = await refreshAccessToken();
-          setToken(newToken);
+          const newToken = await refreshToken();
+          setToken(newToken.access_token);
         }
-      } catch (err) {
+      } catch {
         clearToken();
         navigate('/manager/login');
       } finally {
@@ -24,7 +24,7 @@ const RequireAuth = ({ children }: { children: React.ReactNode }) => {
     };
 
     checkAuth();
-  }, []);
+  }, [token, setToken, clearToken, navigate]);
 
   if (loading) return <div>로딩 중...</div>;
 

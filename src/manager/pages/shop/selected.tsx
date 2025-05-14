@@ -1,4 +1,4 @@
-import ShopSelectList from '@/manager/components/ShopSelectList';
+import ShopSelectList from '@/manager/components/common/ShopSelectList';
 
 const ShopSelectPage = () => {
   return (

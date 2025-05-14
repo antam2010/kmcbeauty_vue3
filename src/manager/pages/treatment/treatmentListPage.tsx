@@ -7,7 +7,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { EventClickArg, EventApi, DatesSetArg } from '@fullcalendar/core';
 
-import { getTreatmentList } from '@/api/manager/treatment';
+import { getTreatmentList } from '@/manager/api/treatment';
 
 const TreatmentCalendarPage = () => {
   const [selectedEvent, setSelectedEvent] = useState<EventApi | null>(null);
