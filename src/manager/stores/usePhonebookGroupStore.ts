@@ -2,14 +2,14 @@ import { create } from "zustand";
 import type { PhonebookGroupResponse } from "@/shared/types/phonebook";
 import { getPhonebookGroupList } from "@/shared/api/phonebook";
 
-interface GroupStore {
+interface PhonebookGroupStore {
   groupList: PhonebookGroupResponse[];
   isLoading: boolean;
   error: string | null;
   fetchGroups: () => Promise<void>;
 }
 
-export const useGroupStore = create<GroupStore>((set) => ({
+export const useGroupStore = create<PhonebookGroupStore>((set) => ({
   groupList: [],
   isLoading: false,
   error: null,

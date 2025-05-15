@@ -12,7 +12,7 @@ import {
 import { X } from "lucide-react";
 import type { PhonebookInput } from "@/shared/types/phonebook";
 import GroupCombobox from "../common/GroupCombobox";
-import { useGroupStore } from "@/manager/stores/phonebookGroupStore";
+import { useGroupStore } from "@/manager/stores/usePhonebookGroupStore";
 import { useNotificationStore } from "@/shared/stores/useNotificationStore";
 import { parseErrorMessage } from "@/shared/utils/parseErrorMessage";
 

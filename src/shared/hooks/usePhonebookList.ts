@@ -8,7 +8,7 @@ export const usePhonebookList = (
   size: number
 ) => {
   return useQuery<PhonebookListResponse>({
-    queryKey: ["phonebook-list", search, page, size],
+    queryKey: ["phonebookList", search, page, size],
     queryFn: () => getPhonebookList({ search, page, size }),
     staleTime: 60 * 1000,
     placeholderData: (prev) => prev,
