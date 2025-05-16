@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useAuthStore } from '@/shared/stores/auth';
-import { refreshToken } from '@/shared/api/auth';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useAuthStore } from "@/shared/stores/useTokenStore";
+import { refreshToken } from "@/shared/api/auth";
+import { useNavigate } from "react-router-dom";
 
 const RequireAuth = ({ children }: { children: React.ReactNode }) => {
   const { token, setToken, clearToken } = useAuthStore();
@@ -17,7 +17,7 @@ const RequireAuth = ({ children }: { children: React.ReactNode }) => {
         }
       } catch {
         clearToken();
-        navigate('/manager/login');
+        navigate("/manager/login");
       } finally {
         setLoading(false);
       }

@@ -1,8 +1,5 @@
-import axios, {
-  AxiosError,
-  InternalAxiosRequestConfig,
-} from "axios";
-import { useAuthStore } from "@/shared/stores/auth";
+import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
+import { useAuthStore } from "@/shared/stores/useTokenStore";
 import { refreshToken } from "@/shared/api/auth";
 
 // 백엔드 에러 응답 타입 정의
@@ -36,7 +33,6 @@ axiosInstance.interceptors.request.use(
   },
   (error) => Promise.reject(error)
 );
-
 
 // ✅ 응답 인터셉터: 에러 처리 및 리프레시 토큰 로직
 axiosInstance.interceptors.response.use(

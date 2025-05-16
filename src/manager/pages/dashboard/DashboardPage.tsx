@@ -1,4 +1,4 @@
-import { useAuthStore } from '../../../shared/stores/auth';
+import { useAuthStore } from "../../../shared/stores/useTokenStore";
 
 const Dashboard = () => {
   return (
