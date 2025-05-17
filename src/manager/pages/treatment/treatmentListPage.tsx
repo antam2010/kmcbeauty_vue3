@@ -5,26 +5,18 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { EventClickArg, EventApi, DatesSetArg } from "@fullcalendar/core";
+import {
+  EventClickArg,
+  EventApi,
+  DatesSetArg,
+  EventInput,
+} from "@fullcalendar/core";
 
 import { getTreatmentList } from "@/shared/api/treatment";
 
 const TreatmentCalendarPage = () => {
   const [selectedEvent, setSelectedEvent] = useState<EventApi | null>(null);
-  type CalendarEvent = {
-    id: number;
-    title: string;
-    start: string;
-    end: string;
-    extendedProps: {
-      memo: string;
-      customerName: string;
-      phoneNumber: string;
-      durationTotalMin: number;
-    };
-  };
-
-  const [events, setEvents] = useState<CalendarEvent[]>([]);
+  const [events, setEvents] = useState<EventInput[]>([]); // ✅ FullCalendar 타입 사용
 
   const fetchTreatmentListByRange = async (start: string, end: string) => {
     try {
@@ -35,13 +27,13 @@ const TreatmentCalendarPage = () => {
         size: 100,
       });
 
-      const mappedEvents = response.items.map((item) => ({
-        id: item.id,
+      const mappedEvents: EventInput[] = response.items.map((item) => ({
+        id: String(item.id),
         title: item.phonebook?.name ?? "이름 없음",
         start: item.reserved_at,
-        end: item.finished_at,
+        end: item.finished_at ?? undefined, // ✅ null 대신 undefined
         extendedProps: {
-          memo: item.memo,
+          memo: item.memo ?? "",
           customerName: item.phonebook?.name ?? "",
           phoneNumber: item.phonebook?.phone_number ?? "",
           durationTotalMin: item.treatment_items.reduce(
@@ -90,7 +82,7 @@ const TreatmentCalendarPage = () => {
         initialView="timeGridWeek"
         locale="ko"
         height="auto"
-        events={events}
+        events={events} // ✅ EventInput[]
         datesSet={handleDatesSet}
         eventClick={handleEventClick}
         headerToolbar={{
@@ -114,7 +106,7 @@ const TreatmentCalendarPage = () => {
               시작 시간: {selectedEvent.start?.toLocaleString()}
             </p>
             <p className="text-sm text-gray-600 mb-1">
-              종료 시간: {selectedEvent.end?.toLocaleString()}
+              종료 시간: {selectedEvent.end?.toLocaleString() ?? "미정"}
             </p>
             <p className="text-sm text-gray-600 mb-4">
               메모: {selectedEvent.extendedProps?.memo}
