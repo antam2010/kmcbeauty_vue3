@@ -7,7 +7,7 @@ import { useShopStore } from "@/shared/stores/useShopStore";
 export const usePhonebookList = (
   search: string,
   page: number,
-  size: number,
+  size: number
 ) => {
   const shopId = useShopStore((state) => state.selectedShop?.id);
 

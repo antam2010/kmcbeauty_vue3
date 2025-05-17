@@ -34,7 +34,7 @@ export default function CustomerList() {
   const { data, refetch: refetchPhonebook } = usePhonebookList(
     debouncedSearch,
     page,
-    pageSize,
+    pageSize
   );
   const phonebooks = data?.items || [];
   const totalPages = data?.pages || 1;
@@ -67,7 +67,7 @@ export default function CustomerList() {
         .getState()
         .showConfirm(
           "정말 삭제하시겠습니까?",
-          "삭제된 정보는 복구할 수 없습니다.",
+          "삭제된 정보는 복구할 수 없습니다."
         );
       if (!confirmed) return;
       try {
@@ -78,7 +78,7 @@ export default function CustomerList() {
         useNotificationStore.getState().show(parseErrorMessage(e), "error");
       }
     },
-    [refetchPhonebook],
+    [refetchPhonebook]
   );
 
   const columns = useMemo<ColumnDef<Phonebook>[]>(
@@ -116,7 +116,7 @@ export default function CustomerList() {
         ),
       },
     ],
-    [openModal, onDeleteClick],
+    [openModal, onDeleteClick]
   );
 
   const table = useReactTable({
@@ -177,7 +177,7 @@ export default function CustomerList() {
                   >
                     {flexRender(
                       header.column.columnDef.header,
-                      header.getContext(),
+                      header.getContext()
                     )}
                     {header.column.getIsSorted() === "asc"
                       ? " 🔼"
@@ -214,7 +214,7 @@ export default function CustomerList() {
 
         {Array.from(
           { length: endPage - startPage + 1 },
-          (_, i) => startPage + i,
+          (_, i) => startPage + i
         ).map((p) => (
           <button
             key={p}

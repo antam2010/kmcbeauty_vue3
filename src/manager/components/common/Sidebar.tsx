@@ -26,6 +26,9 @@ const Sidebar = () => {
 
   const selectedShopFromStore = useShopStore((state) => state.selectedShop);
   const setSelectedShopState = useShopStore((state) => state.setSelectedShop);
+  const clearSelectedShopState = useShopStore(
+    (state) => state.clearSelectedShop,
+  );
 
   const [selectedShop, setSelectedShop] = useState<Shop | null>(null);
 
@@ -62,6 +65,7 @@ const Sidebar = () => {
       console.error("로그아웃 실패", err);
     } finally {
       clearToken();
+      clearSelectedShopState();
       queryClient.clear();
       navigate("/manager/login");
     }
