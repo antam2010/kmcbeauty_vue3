@@ -25,8 +25,8 @@ export default function NotificationContainer() {
               n.type === "success"
                 ? "bg-green-500"
                 : n.type === "error"
-                ? "bg-red-500"
-                : "bg-gray-700"
+                  ? "bg-red-500"
+                  : "bg-gray-700"
             }`}
           >
             {n.message}

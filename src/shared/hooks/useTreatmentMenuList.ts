@@ -7,7 +7,7 @@ import type { TreatmentMenuListResponse } from "@/shared/types/treatment_menu";
 export const useTreatmentMenuList = (
   search: string,
   page: number,
-  size: number
+  size: number,
 ) => {
   const shopId = useShopStore((state) => state.selectedShop?.id);
 

@@ -31,7 +31,7 @@ axiosInstance.interceptors.request.use(
 
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 // ✅ 응답 인터셉터: 에러 처리 및 리프레시 토큰 로직
@@ -84,9 +84,8 @@ axiosInstance.interceptors.response.use(
       ) {
         originalRequest.headers.set("Authorization", `Bearer ${access_token}`);
       } else {
-        (originalRequest.headers as Record<string, string>)[
-          "Authorization"
-        ] = `Bearer ${access_token}`;
+        (originalRequest.headers as Record<string, string>)["Authorization"] =
+          `Bearer ${access_token}`;
       }
 
       // 7. 원래 요청 재시도
@@ -102,5 +101,5 @@ axiosInstance.interceptors.response.use(
 
       return Promise.reject(refreshError);
     }
-  }
+  },
 );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import {
   useReactTable,
   getCoreRowModel,
@@ -34,7 +34,7 @@ export default function CustomerList() {
   const { data, refetch: refetchPhonebook } = usePhonebookList(
     debouncedSearch,
     page,
-    pageSize
+    pageSize,
   );
   const phonebooks = data?.items || [];
   const totalPages = data?.pages || 1;
@@ -61,22 +61,25 @@ export default function CustomerList() {
     saveAs(blob, `고객리스트_${today}.csv`);
   };
 
-  const onDeleteClick = async (id: number) => {
-    const confirmed = await useConfirmStore
-      .getState()
-      .showConfirm(
-        "정말 삭제하시겠습니까?",
-        "삭제된 정보는 복구할 수 없습니다."
-      );
-    if (!confirmed) return;
-    try {
-      await deletePhonebook(id);
-      useNotificationStore.getState().show("삭제되었습니다.", "success");
-      refetchPhonebook();
-    } catch (e) {
-      useNotificationStore.getState().show(parseErrorMessage(e), "error");
-    }
-  };
+  const onDeleteClick = useCallback(
+    async (id: number) => {
+      const confirmed = await useConfirmStore
+        .getState()
+        .showConfirm(
+          "정말 삭제하시겠습니까?",
+          "삭제된 정보는 복구할 수 없습니다.",
+        );
+      if (!confirmed) return;
+      try {
+        await deletePhonebook(id);
+        useNotificationStore.getState().show("삭제되었습니다.", "success");
+        refetchPhonebook();
+      } catch (e) {
+        useNotificationStore.getState().show(parseErrorMessage(e), "error");
+      }
+    },
+    [refetchPhonebook],
+  );
 
   const columns = useMemo<ColumnDef<Phonebook>[]>(
     () => [
@@ -113,7 +116,7 @@ export default function CustomerList() {
         ),
       },
     ],
-    []
+    [openModal, onDeleteClick],
   );
 
   const table = useReactTable({
@@ -124,6 +127,11 @@ export default function CustomerList() {
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
   });
+
+  // 페이지네이션 계산
+  const maxVisiblePages = 5;
+  const startPage = Math.max(1, page - Math.floor(maxVisiblePages / 2));
+  const endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
 
   return (
     <div className="p-8">
@@ -169,13 +177,13 @@ export default function CustomerList() {
                   >
                     {flexRender(
                       header.column.columnDef.header,
-                      header.getContext()
+                      header.getContext(),
                     )}
                     {header.column.getIsSorted() === "asc"
                       ? " 🔼"
                       : header.column.getIsSorted() === "desc"
-                      ? " 🔽"
-                      : ""}
+                        ? " 🔽"
+                        : ""}
                   </th>
                 ))}
               </tr>
@@ -196,7 +204,18 @@ export default function CustomerList() {
       </div>
 
       <div className="mt-6 flex justify-center space-x-2">
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+        <button
+          disabled={page === 1}
+          onClick={() => setPage(page - 1)}
+          className="px-3 py-1 border rounded text-sm bg-white disabled:opacity-50"
+        >
+          이전
+        </button>
+
+        {Array.from(
+          { length: endPage - startPage + 1 },
+          (_, i) => startPage + i,
+        ).map((p) => (
           <button
             key={p}
             onClick={() => setPage(p)}
@@ -207,6 +226,14 @@ export default function CustomerList() {
             {p}
           </button>
         ))}
+
+        <button
+          disabled={page === totalPages}
+          onClick={() => setPage(page + 1)}
+          className="px-3 py-1 border rounded text-sm bg-white disabled:opacity-50"
+        >
+          다음
+        </button>
       </div>
 
       <CustomerFormModal onComplete={refetchPhonebook} />

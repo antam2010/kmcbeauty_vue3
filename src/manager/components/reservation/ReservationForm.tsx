@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 type Props = {
   defaultValues?: {
@@ -8,17 +8,25 @@ type Props = {
     memo?: string;
     customerName?: string;
   };
-  onSubmit: (form: { title: string; start: string; end: string; memo?: string; customerName?: string }) => void;
+  onSubmit: (form: {
+    title: string;
+    start: string;
+    end: string;
+    memo?: string;
+    customerName?: string;
+  }) => void;
 };
 
 export default function ReservationForm({ defaultValues, onSubmit }: Props) {
-  const [form, setForm] = useState(defaultValues ?? {
-    title: '',
-    start: '',
-    end: '',
-    memo: '',
-    customerName: '',
-  });
+  const [form, setForm] = useState(
+    defaultValues ?? {
+      title: "",
+      start: "",
+      end: "",
+      memo: "",
+      customerName: "",
+    },
+  );
 
   return (
     <form
@@ -58,7 +66,10 @@ export default function ReservationForm({ defaultValues, onSubmit }: Props) {
         placeholder="메모"
         className="w-full border rounded px-3 py-2"
       />
-      <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded">
+      <button
+        type="submit"
+        className="w-full bg-blue-500 text-white py-2 rounded"
+      >
         저장
       </button>
     </form>

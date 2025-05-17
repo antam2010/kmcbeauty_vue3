@@ -19,5 +19,5 @@ export const useTreatmentDetailModalStore = create<TreatmentDetailModalState>(
     data: null,
     open: (mode, data) => set({ isOpen: true, mode, data }),
     close: () => set({ isOpen: false, data: null }),
-  })
+  }),
 );

@@ -31,7 +31,7 @@ export default function TreatmentMenuList() {
   const { data, refetch } = useTreatmentMenuList(
     debouncedSearch,
     page,
-    pageSize
+    pageSize,
   );
   const menus = data?.items || [];
   const totalPages = data?.pages || 1;
@@ -63,7 +63,7 @@ export default function TreatmentMenuList() {
         ),
       },
     ],
-    []
+    [openMenuModal],
   );
 
   const table = useReactTable({
@@ -106,7 +106,7 @@ export default function TreatmentMenuList() {
                   <th key={header.id} className="p-2 border">
                     {flexRender(
                       header.column.columnDef.header,
-                      header.getContext()
+                      header.getContext(),
                     )}
                   </th>
                 ))}

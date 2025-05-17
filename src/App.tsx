@@ -1,17 +1,16 @@
-import { Routes, Route, Link } from 'react-router-dom';
-import ManagerRoutes from '@/manager/routes';
-import Login from './manager/pages/auth/LoginPage';
+import { Routes, Route, Link } from "react-router-dom";
+import ManagerRoutes from "@/manager/routes";
+import Login from "./manager/pages/auth/LoginPage";
 
-import PrivacyPolicy from './manager/pages/policy/PrivacyPolicyPage'; 
-import TermsOfService from './manager/pages/policy/TermsOfServicePage';
-import ShopSelectPage from './manager/pages/shop/selected';
+import PrivacyPolicy from "./manager/pages/policy/PrivacyPolicyPage";
+import TermsOfService from "./manager/pages/policy/TermsOfServicePage";
+import ShopSelectPage from "./manager/pages/shop/selected";
 
 function App() {
   return (
     <Routes>
       {/* 매니저 페이지 라우트 */}
       <Route path="/manager/*" element={<ManagerRoutes />} />
-
       {/* 메인 페이지 */}
       <Route
         path="/"
@@ -42,13 +41,14 @@ function App() {
           </div>
         }
       />
-
       {/* 개별 페이지 */}
       <Route path="/login" element={<Login />} /> {/* 로그인 페이지 */}
-      <Route path="/privacy-policy" element={<PrivacyPolicy />} /> {/* 개인정보 처리 방침 페이지 */}
-      <Route path="/terms-of-service" element={<TermsOfService />} /> {/* 이용 약관 페이지 */}
-      <Route path="/manager/shops/selected" element={<ShopSelectPage />} /> {/* 상점 선택 페이지 */}
-
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />{" "}
+      {/* 개인정보 처리 방침 페이지 */}
+      <Route path="/terms-of-service" element={<TermsOfService />} />{" "}
+      {/* 이용 약관 페이지 */}
+      <Route path="/manager/shops/selected" element={<ShopSelectPage />} />{" "}
+      {/* 상점 선택 페이지 */}
       {/* 404 페이지 */}
     </Routes>
   );

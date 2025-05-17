@@ -15,13 +15,13 @@ export async function getPhonebookList(params: {
     "/phonebooks",
     {
       params,
-    }
+    },
   );
   return data;
 }
 
 export async function createPhonebook(
-  params: PhonebookInput
+  params: PhonebookInput,
 ): Promise<Phonebook> {
   const { data } = await axiosInstance.post<Phonebook>("/phonebooks", params);
   return data;
@@ -29,17 +29,17 @@ export async function createPhonebook(
 
 export async function updatePhonebook(
   id: number,
-  params: PhonebookInput
+  params: PhonebookInput,
 ): Promise<Phonebook> {
   const { data } = await axiosInstance.put<Phonebook>(
     `/phonebooks/${id}`,
-    params
+    params,
   );
   return data;
 }
 
 export async function getPhonebookGroupList(
-  with_items: boolean = false
+  with_items: boolean = false,
 ): Promise<PhonebookGroupResponse[]> {
   const { data } = await axiosInstance.get<PhonebookGroupResponse[]>(
     "/phonebooks/groups",
@@ -47,7 +47,7 @@ export async function getPhonebookGroupList(
       params: {
         with_items,
       },
-    }
+    },
   );
   return data;
 }

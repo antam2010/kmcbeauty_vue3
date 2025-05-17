@@ -1,17 +1,30 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import { EventClickArg, EventApi, DatesSetArg } from '@fullcalendar/core';
+import { useState } from "react";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import { EventClickArg, EventApi, DatesSetArg } from "@fullcalendar/core";
 
-import { getTreatmentList } from '@/shared/api/treatment';
+import { getTreatmentList } from "@/shared/api/treatment";
 
 const TreatmentCalendarPage = () => {
   const [selectedEvent, setSelectedEvent] = useState<EventApi | null>(null);
-  const [events, setEvents] = useState<any[]>([]);
+  type CalendarEvent = {
+    id: number;
+    title: string;
+    start: string;
+    end: string;
+    extendedProps: {
+      memo: string;
+      customerName: string;
+      phoneNumber: string;
+      durationTotalMin: number;
+    };
+  };
+
+  const [events, setEvents] = useState<CalendarEvent[]>([]);
 
   const fetchTreatmentListByRange = async (start: string, end: string) => {
     try {
@@ -24,20 +37,23 @@ const TreatmentCalendarPage = () => {
 
       const mappedEvents = response.items.map((item) => ({
         id: item.id,
-        title: item.phonebook?.name ?? '이름 없음',
+        title: item.phonebook?.name ?? "이름 없음",
         start: item.reserved_at,
         end: item.finished_at,
         extendedProps: {
           memo: item.memo,
-          customerName: item.phonebook?.name ?? '',
-          phoneNumber: item.phonebook?.phone_number ?? '',
-          durationTotalMin: item.treatment_items.reduce((sum, t) => sum + t.duration_min, 0),
+          customerName: item.phonebook?.name ?? "",
+          phoneNumber: item.phonebook?.phone_number ?? "",
+          durationTotalMin: item.treatment_items.reduce(
+            (sum, t) => sum + t.duration_min,
+            0,
+          ),
         },
       }));
 
       setEvents(mappedEvents);
     } catch (e) {
-      console.error('예약 조회 실패', e);
+      console.error("예약 조회 실패", e);
     }
   };
 
@@ -58,7 +74,7 @@ const TreatmentCalendarPage = () => {
 
   const handleDelete = () => {
     if (!selectedEvent) return;
-    const confirmed = confirm('정말 삭제하시겠습니까?');
+    const confirmed = confirm("정말 삭제하시겠습니까?");
     if (confirmed) {
       alert(`삭제 요청 보냄: ID ${selectedEvent.id}`);
       setSelectedEvent(null);
@@ -78,9 +94,9 @@ const TreatmentCalendarPage = () => {
         datesSet={handleDatesSet}
         eventClick={handleEventClick}
         headerToolbar={{
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay',
+          left: "prev,next today",
+          center: "title",
+          right: "dayGridMonth,timeGridWeek,timeGridDay",
         }}
       />
 

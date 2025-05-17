@@ -3,14 +3,14 @@ import {
   DialogPanel,
   Transition,
   TransitionChild,
-} from '@headlessui/react'
-import { Fragment } from 'react'
+} from "@headlessui/react";
+import { Fragment } from "react";
 
 type ModalProps = {
-  isOpen: boolean
-  onClose: () => void
-  children: React.ReactNode
-}
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+};
 
 export default function Modal({ isOpen, onClose, children }: ModalProps) {
   return (
@@ -45,5 +45,5 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
         </div>
       </Dialog>
     </Transition>
-  )
+  );
 }

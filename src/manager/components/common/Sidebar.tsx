@@ -23,27 +23,37 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const clearToken = useAuthStore((state) => state.clearToken);
-  const [selectedShop, setSelectedShop] = useState<Shop | null>(null);
+
+  const selectedShopFromStore = useShopStore((state) => state.selectedShop);
   const setSelectedShopState = useShopStore((state) => state.setSelectedShop);
 
+  const [selectedShop, setSelectedShop] = useState<Shop | null>(null);
+
   useEffect(() => {
+    // Zustand에 이미 상점이 있으면 API 호출 생략
+    if (selectedShopFromStore) {
+      setSelectedShop(selectedShopFromStore);
+      return;
+    }
+
     const fetchSelectedShop = async () => {
       try {
         const shop = await getSelectedShop();
         setSelectedShop(shop);
-        setSelectedShopState(shop); // 전역 상태에 선택된 상점 저장
+        setSelectedShopState(shop);
       } catch (error) {
         const err = error as AxiosError;
         if (err.response?.status === 404) {
           navigate("/manager/shops/selected");
         } else {
           console.error("선택된 상점 로딩 실패", err);
+          navigate("/login");
         }
       }
     };
 
     fetchSelectedShop();
-  }, [navigate, setSelectedShopState]);
+  }, [navigate, setSelectedShopState, selectedShopFromStore]);
 
   const handleLogout = async () => {
     try {

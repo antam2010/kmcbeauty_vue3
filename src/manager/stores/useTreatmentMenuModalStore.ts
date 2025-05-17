@@ -18,5 +18,5 @@ export const useTreatmentMenuModalStore = create<TreatmentMenuModalState>(
     data: null,
     open: (mode, data) => set({ isOpen: true, mode, data }),
     close: () => set({ isOpen: false, data: null }),
-  })
+  }),
 );
